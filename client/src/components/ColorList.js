@@ -19,9 +19,17 @@ const ColorList = ({ colors, updateColors, fetchColors }) => {
 
   const saveEdit = (e) => {
     e.preventDefault();
-    // Make a put request to save your updated color
-    // think about where will you get the id from...
-    // where is is saved right now?
+    const id = colorToEdit.id;
+    axiosWithAuth()
+      .put(`/colors/${id}`, colorToEdit)
+      .then((res) => {
+        console.log(res);
+        if (res.statusText === "OK") {
+          setColorToEdit(initialColor);
+          setEditing(false);
+          fetchColors();
+        }
+      });
   };
 
   const deleteColor = (color) => {
