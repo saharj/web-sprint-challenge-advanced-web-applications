@@ -23,7 +23,6 @@ const ColorList = ({ colors, updateColors, fetchColors }) => {
     axiosWithAuth()
       .put(`/colors/${id}`, colorToEdit)
       .then((res) => {
-        console.log(res);
         if (res.statusText === "OK") {
           setColorToEdit(initialColor);
           setEditing(false);
